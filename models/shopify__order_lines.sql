@@ -28,7 +28,7 @@ with order_lines as (
 ), joined as (
 
     select
-        order_lines.*,
+        order_lines.* EXCEPT(variant_inventory_management, variant_title), 
 
         {% if fivetran_utils.enabled_vars(vars=["shopify__using_order_line_refund", "shopify__using_refund"]) %}
         coalesce(refunds_aggregated.quantity,0) as refunded_quantity,
