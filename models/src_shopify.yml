@@ -1,0 +1,10 @@
+
+   
+version: 2
+
+sources:
+  - name: shopify
+    database: umg-audience-data
+    dataset: ecommerce
+    tables:
+      - name: shopify_orders_refunds_transactions_receipts

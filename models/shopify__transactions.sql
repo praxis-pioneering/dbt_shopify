@@ -1,6 +1,10 @@
 with transactions as (
-    select *
-    from {{ var('shopify_transaction') }}
+    select 
+        shopify_transaction.*,
+        txn_receipt.receipt
+    from {{ var('shopify_transaction') }} shopify_transaction
+    LEFT JOIN {{ source('shopify', 'shopify_orders_refunds_transactions_receipts')}} txn_receipt
+    USING(order_id)
 
 ), exchange_rate as (
 
